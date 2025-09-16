@@ -10,4 +10,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Caching\" />
+    <Folder Include="Resilience\" />
+    <Folder Include="Tracing\" />
+    <Folder Include="Validation\" />
+  </ItemGroup>
+
 </Project>

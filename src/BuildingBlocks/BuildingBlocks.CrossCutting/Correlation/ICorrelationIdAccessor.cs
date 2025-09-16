@@ -1,6 +1,6 @@
 ﻿namespace BuildingBlocks.CrossCutting.Correlation
 {
-    public interface ICorrelationIdAccessor
+    internal interface ICorrelationIdAccessor
     {
         string? GetCorrelationId();
         void SetCorrelationId(string correlationId);
