@@ -1,10 +1,11 @@
 ﻿
+using Microsoft.AspNetCore.Http;
+
 namespace BuildingBlocks.CrossCutting.Logging
 {
     public interface ILoggingService
     {
-        void LogInformation(string message);
-        void LogWarning(string message);
-        void LogError(string message, Exception? exception = null);
+        Task LogRequestAsync(HttpContext context);
+        Task LogResponseAsync(HttpContext context);
     }
 }
