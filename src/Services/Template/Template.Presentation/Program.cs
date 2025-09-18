@@ -1,33 +1,30 @@
 using BuildingBlocks.CrossCutting.Extensions;
+using BuildingBlocks.CrossCutting.Middleware;
+using BuildingBlocks.CrossCutting.Validation;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<DefaultValidationFilter>();
+});
 ServiceCollectionExtensions.AddCrossCutting(builder.Services, builder.Configuration);
 
-var config = builder.Configuration;
-
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseHttpsRedirection();
 
+app.UseMiddleware<ExceptionMiddleware>();
+app.UseMiddleware<CorrelationMiddleware>();
+app.UseMiddleware<LoggingMiddleware>();
+
 app.UseAuthentication();
-
 app.UseAuthorization();
-
 app.UseResponseCaching();
 
 app.MapControllers();
+app.MapDefaultControllerRoute();
 
 app.Run();

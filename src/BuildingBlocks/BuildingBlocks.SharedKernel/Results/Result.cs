@@ -1,4 +1,5 @@
 ﻿
+
 namespace BuildingBlocks.SharedKernel.Results
 {
     public class Result<T>
@@ -16,7 +17,7 @@ namespace BuildingBlocks.SharedKernel.Results
             Value = value;
             Error = error;
         }
-        public static Result<T> Success(T value) => new Result<T>(true, value, null);
-        public static Result<T> Failure(string error) => new Result<T>(false, default, error);
+        public static Result<T> Success(T value) => new(true, value, null);
+        public static Result<T> Failure(string error) => new(false, default, error);
     }
 }

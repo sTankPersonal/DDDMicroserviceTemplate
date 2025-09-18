@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Http;
 
 namespace BuildingBlocks.CrossCutting.Middleware
 {
-    internal class CorrelationMiddleware(RequestDelegate next, ICorrelationService correlationAccessor) : BaseMiddleware(next)
+    public class CorrelationMiddleware(RequestDelegate next, ICorrelationService correlationService) : BaseMiddleware(next)
     {
-        private readonly ICorrelationService _correlationAccessor = correlationAccessor;
+        private readonly ICorrelationService _correlationService = correlationService;
 
         protected override async Task PreProcessAsync(HttpContext context)
         {
-            await _correlationAccessor.GetOrSetCorrelationId(context);
+            await _correlationService.GetOrSetCorrelationId(context);
         }
 
         protected override async Task PostProcessAsync(HttpContext context)
         {
-            await _correlationAccessor.SetCorrelationId(context);
+            await _correlationService.SetCorrelationId(context);
         }
     }
 }

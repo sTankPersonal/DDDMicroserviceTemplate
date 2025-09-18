@@ -6,13 +6,21 @@ namespace BuildingBlocks.CrossCutting.Middleware
     {
         private readonly RequestDelegate _next = next;
 
-        public async Task InvokeAsync(HttpContext context)
+        protected virtual async Task InvokeAsync(HttpContext context)
         {
             await PreProcessAsync(context);
             await _next(context);
             await PostProcessAsync(context);
         }
-        protected abstract Task PreProcessAsync(HttpContext context);
-        protected abstract Task PostProcessAsync(HttpContext context);
+
+        protected virtual Task PreProcessAsync(HttpContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual Task PostProcessAsync(HttpContext context)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
