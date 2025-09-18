@@ -2,7 +2,7 @@
 
 namespace BuildingBlocks.SharedKernel.Entities
 {
-    public abstract class BaseEntity<TId> : IEquatable<BaseEntity<TId>>
+    public abstract class BaseEntity<TId>: IEquatable<BaseEntity<TId>>
     {
         public TId Id { get; protected set; } = default!;
         private readonly List<IDomainEvent> _domainEvents = [];

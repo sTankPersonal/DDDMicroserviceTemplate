@@ -1,9 +1,8 @@
-﻿
-using BuildingBlocks.SharedKernel.Entities;
+﻿using BuildingBlocks.SharedKernel.Entities;
 
 namespace Template.Domain.Entities
 {
-    internal class ExampleEntity : BaseEntity<Guid>
+    public class ExampleEntity : BaseEntity<Guid>
     {
         public string Attribute { get; private set; } = string.Empty;
 

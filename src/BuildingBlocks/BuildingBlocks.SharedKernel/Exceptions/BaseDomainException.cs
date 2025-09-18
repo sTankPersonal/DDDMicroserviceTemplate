@@ -1,8 +1,7 @@
 ﻿
 namespace BuildingBlocks.SharedKernel.Exceptions
 {
-    public abstract class BaseDomainException : Exception
+    public abstract class BaseDomainException(string message) : Exception(message)
     {
-        protected BaseDomainException(string message) : base(message) { }
     }
 }
