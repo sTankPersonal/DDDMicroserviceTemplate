@@ -1,18 +1,18 @@
 # .NET Microservices: Architecture for Containerized .NET Applications
 
-This repository implements a modular, layered microservices architecture for the **Template App** project targeting .NET 8 and containerized deployment.
+This repository implements a modular, layered microservices architecture **Template** project targeting .NET 9 and containerized deployment.
 
 ## Disclaimer
 
-This is a template and starting point for building microservices with .NET. It is not a complete production-ready solution. It must be adapted and extend it to fit specific requirements, including security, scalability, monitoring, and deployment.
-This template was written by Sean Tank following the book ".NET Microservices: Architecture for Containerized .NET Applications" by Cesar de la Torre, Bill Wagner, Mike Rousos. (https://learn.microsoft.com/en-us/dotnet/architecture/microservices/)
-I am not affiliated with Microsoft or the authors.
-I am not making any money nor using this in any business capacity from this project as this is simply a fun personal learning exercise for me.
-This project is not tested for security vulnerabilities or performance issues, as such it should not be used in production without thorough review and testing.
-Please do not fork/use/distribute this code without written permission by Sean Tank. Any uses of this project is provided "as is" without warranty of any kind and should not be held against Sean Tank in any way.
-Feel free to open issues or pull requests if you find any problems or have suggestions for improvement, I gratefully appreciate any feedback. 
+This is a template and starting point for building microservices with C# .NET. It is not a complete production-ready solution. It must be adapted and extended to fit specific domain requirements, and requires security, scalability, monitoring, and deployment implementation.  
+This template was written by Sean Tank following the book ".NET Microservices: Architecture for Containerized .NET Applications" by Cesar de la Torre, Bill Wagner, and Mike Rousos. (https://learn.microsoft.com/en-us/dotnet/architecture/microservices/).  
+I am not affiliated with Microsoft or the authors.  
+I am not making any money nor using this in any business capacity because this is simply a fun personal learning exercise for me.  
+This project is not tested for any security vulnerabilities (outside of hidden user secrets) or performance issues; as such, it should not be used in production without thorough review and testing.  
+Please do not fork/use/distribute this code without written permission from Sean Tank. Any potential use of this project is provided "as is" without warranty of any kind; nor should any issues be held against Sean Tank in any way.  
+Feel free to open issues or pull requests if you find any problems or have suggestions for improvement. I gratefully appreciate any feedback.   
 
-Thank you!
+Thank you!  
 Sean
 
 ---
@@ -63,29 +63,29 @@ Template App/
 
 ---
 
-## Building blocks — templates and abstract classes
+## Building blocks â€” templates and abstract classes
 
 The BuildingBlocks folder provides the reusable base types across services. Use these rather than duplicating common abstractions.
 
 SharedKernel (what to use)
-- BaseEntity<TId> — base entity (Id, domain events, equality helpers). Extend by creating domain entities that inherit BaseEntity.
-- ValueObject — (if present) base for immutable value objects.
-- IRepository<T> — generic repository contract used by Domain interfaces and implemented in Infrastructure.
-- PagedQuery / PagedResult<T> and Result<T> — common helpers for paging and operation results.
-- IDomainService — marker for cross-aggregate domain services.
+- BaseEntity<TId> â€” base entity (Id, domain events, equality helpers). Extend by creating domain entities that inherit BaseEntity.
+- ValueObject â€” (if present) base for immutable value objects.
+- IRepository<T> â€” generic repository contract used by Domain interfaces and implemented in Infrastructure.
+- PagedQuery / PagedResult<T> and Result<T> â€” common helpers for paging and operation results.
+- IDomainService â€” marker for cross-aggregate domain services.
 
 EventBus (what to use)
-- IntegrationEvent — base for cross-service events.
-- IIntegrationEventHandler<TEvent> — typed event handler contract.
-- IEventBus — Publish/Subscribe/Unsubscribe abstraction.
-- Registration extensions (AddEventBus) — place to centralize wiring of a concrete IEventBus implementation.
+- IntegrationEvent â€” base for cross-service events.
+- IIntegrationEventHandler<TEvent> â€” typed event handler contract.
+- IEventBus â€” Publish/Subscribe/Unsubscribe abstraction.
+- Registration extensions (AddEventBus) â€” place to centralize wiring of a concrete IEventBus implementation.
 
 CrossCutting (what to use)
 - Logging, caching, correlation-id and middleware abstractions plus DI registration helpers.
 
 ---
 
-## Service folder guide — responsibilities and what to extend (no code)
+## Service folder guide â€” responsibilities and what to extend (no code)
 
 Service root (Services/{Name})
 - Purpose: single microservice boundary. Create subprojects (Presentation, Application, Domain, Infrastructure, Tests).
@@ -136,7 +136,7 @@ BuildingBlocks usage and extension points
 - SharedKernel:
   - Use BaseEntity, IRepository, and helper types.
   - Extend with additional generic helpers (PagedQuery, Result<T>) if needed.
-  - Implement concrete repository behaviors in each service’s Infrastructure.
+  - Implement concrete repository behaviors in each serviceâ€™s Infrastructure.
 
 - EventBus:
   - Define IntegrationEvent types in Application for cross-service notifications.
@@ -150,7 +150,7 @@ BuildingBlocks usage and extension points
 Where to register and wire everything
 - Program.cs (Presentation):
   - Call builder.Services.Add{Service}Application() and builder.Services.Add{Service}Infrastructure() extension methods (create these extension methods inside Application/Infrastructure to centralize registrations).
-  - Call builder.Services.AddEventBus(configuration) — ensure this registers a concrete IEventBus.
+  - Call builder.Services.AddEventBus(configuration) â€” ensure this registers a concrete IEventBus.
   - Register event handlers (AddTransient<IIntegrationEventHandler<...>, ...>) and any domain services.
 
 Typical checklist for adding a new service
