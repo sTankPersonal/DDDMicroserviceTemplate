@@ -19,8 +19,8 @@ builder.Services.AddAuthentication(options =>
 .AddCookie("Cookies")
 .AddGoogle("Google", options =>
 {
-    options.ClientId = "<YOUR_GOOGLE_CLIENT_ID>";
-    options.ClientSecret = "<YOUR_GOOGLE_CLIENT_SECRET>";
+    options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID") ?? string.Empty;
+    options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET") ?? string.Empty;
 });
 
 builder.Services.AddAuthorization();

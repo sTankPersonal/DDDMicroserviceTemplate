@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "YourName",
+  "classifications": ["Microservice", "DDD", "CleanArchitecture"],
+  "identity": "YourCompany.Microservice.Template",
+  "name": "DDD Microservice",
+  "shortName": "microservice",
+  "tags": { "language": "C#", "type": "project" },
+  "sourceName": "Template",
+  "preferNameDirectory": true
+}
