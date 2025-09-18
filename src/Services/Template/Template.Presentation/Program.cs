@@ -11,6 +11,20 @@ builder.Services.AddControllersWithViews(options =>
 });
 ServiceCollectionExtensions.AddCrossCutting(builder.Services, builder.Configuration);
 
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = "Cookies";
+    options.DefaultChallengeScheme = "Google";
+})
+.AddCookie("Cookies")
+.AddGoogle("Google", options =>
+{
+    options.ClientId = "<YOUR_GOOGLE_CLIENT_ID>";
+    options.ClientSecret = "<YOUR_GOOGLE_CLIENT_SECRET>";
+});
+
+builder.Services.AddAuthorization();
+
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
