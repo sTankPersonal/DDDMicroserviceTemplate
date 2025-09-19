@@ -10,11 +10,4 @@
     <ProjectReference Include="..\Template.Domain\Template.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="DTOs\" />
-    <Folder Include="Queries\" />
-  </ItemGroup>
-
 </Project>

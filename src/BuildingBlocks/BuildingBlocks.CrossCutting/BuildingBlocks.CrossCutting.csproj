@@ -17,12 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Caching\" />
-    <Folder Include="Resilience\" />
-    <Folder Include="Tracing\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BuildingBlocks.SharedKernel\BuildingBlocks.SharedKernel.csproj" />
   </ItemGroup>
 

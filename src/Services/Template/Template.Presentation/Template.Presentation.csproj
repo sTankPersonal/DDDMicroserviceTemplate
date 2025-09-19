@@ -21,8 +21,4 @@
 		<ProjectReference Include="..\Template.Infrastructure\Template.Infrastructure.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Controllers\Mvc\" />
-	</ItemGroup>
-
 </Project>
