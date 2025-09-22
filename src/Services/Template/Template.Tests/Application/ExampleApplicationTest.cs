@@ -1,4 +1,5 @@
-﻿
+﻿using Xunit;
+
 namespace Template.Tests.Application
 {
     // This is where you can test your application logic

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BuildingBlocks.SharedKernel.DomainServices;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Template.Presentation.Controllers.Api
 {

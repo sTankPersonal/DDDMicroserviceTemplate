@@ -1,11 +1,38 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "YourName",
-  "classifications": ["Microservice", "DDD", "CleanArchitecture"],
-  "identity": "YourCompany.Microservice.Template",
+  "author": "Sean Tank",
+  "classifications": [ "Microservice", "DDD", "CleanArchitecture" ],
+  "identity": "SeanTank.Microservice.Template",
   "name": "DDD Microservice",
   "shortName": "microservice",
-  "tags": { "language": "C#", "type": "project" },
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
   "sourceName": "Template",
-  "preferNameDirectory": true
+  "preferNameDirectory": true,
+  "postActions": [
+    {
+      "actionId": "C3F1C215-1A03-4D6C-8F8B-7A7E2E5BAA8B",
+      "args": {
+        "executable": "dotnet",
+        "args": [
+          "sln",
+          "DDDMicroserviceTemplate.sln",
+          "add",
+          "src/services/${name}/${name}.csproj"
+        ]
+      },
+      "manualInstructions": [
+        {
+          "text": "Create the new microservice project: dotnet new microservice -n ${name} -o src/services/${name}"
+        },
+        {
+          "text": "Add the new project to your solution: dotnet sln DDDMicroserviceTemplate.sln add src/services/${name}/${name}.csproj"
+        }
+      ],
+      "continueOnError": true,
+      "description": "Adds the new microservice project to the solution."
+    }
+  ]
 }

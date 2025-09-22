@@ -1,4 +1,5 @@
-﻿
+﻿using Xunit;
+
 namespace Template.Tests.Presentation
 {
     // This is where you can test your presentation layer, such as controllers or API endpoints
