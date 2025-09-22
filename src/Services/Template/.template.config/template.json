@@ -1,38 +1,56 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "Sean Tank",
-  "classifications": [ "Microservice", "DDD", "CleanArchitecture" ],
-  "identity": "SeanTank.Microservice.Template",
-  "name": "DDD Microservice",
+  "author": "YourName",
+  "classifications": [ "Microservice" ],
+  "identity": "Company.Microservice.Template",
+  "name": "Microservice Template",
   "shortName": "microservice",
-  "tags": {
-    "language": "C#",
-    "type": "project"
-  },
-  "sourceName": "Template",
+  "sourceName": "MicroserviceName",
   "preferNameDirectory": true,
+  "symbols": {
+    "solutionName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "The name or path of the solution file to add the microservice projects to",
+      "replaces": "SolutionName",
+      "defaultValue": ""
+    }
+  },
   "postActions": [
     {
-      "actionId": "C3F1C215-1A03-4D6C-8F8B-7A7E2E5BAA8B",
+      "actionId": "Microsoft.DotNet.Cli.Command",
       "args": {
         "executable": "dotnet",
-        "args": [
-          "sln",
-          "DDDMicroserviceTemplate.sln",
-          "add",
-          "src/services/${name}/${name}.csproj"
-        ]
-      },
-      "manualInstructions": [
-        {
-          "text": "Create the new microservice project: dotnet new microservice -n ${name} -o src/services/${name}"
-        },
-        {
-          "text": "Add the new project to your solution: dotnet sln DDDMicroserviceTemplate.sln add src/services/${name}/${name}.csproj"
-        }
-      ],
-      "continueOnError": true,
-      "description": "Adds the new microservice project to the solution."
+        "args": "sln \"{{solutionName}}\" add Application/MicroserviceName.Application.csproj"
+      }
+    },
+    {
+      "actionId": "Microsoft.DotNet.Cli.Command",
+      "args": {
+        "executable": "dotnet",
+        "args": "sln \"{{solutionName}}\" add Domain/MicroserviceName.Domain.csproj"
+      }
+    },
+    {
+      "actionId": "Microsoft.DotNet.Cli.Command",
+      "args": {
+        "executable": "dotnet",
+        "args": "sln \"{{solutionName}}\" add Infrastructure/MicroserviceName.Infrastructure.csproj"
+      }
+    },
+    {
+      "actionId": "Microsoft.DotNet.Cli.Command",
+      "args": {
+        "executable": "dotnet",
+        "args": "sln \"{{solutionName}}\" add IntegrationTests/MicroserviceName.IntegrationTests.csproj"
+      }
+    },
+    {
+      "actionId": "Microsoft.DotNet.Cli.Command",
+      "args": {
+        "executable": "dotnet",
+        "args": "sln \"{{solutionName}}\" add Presentation/MicroserviceName.Presentation.csproj"
+      }
     }
   ]
 }
